@@ -1,4 +1,4 @@
-package br.com.nataliaweise.gestaovagas.modules.candidate;
+package br.com.nataliaweise.gestaovagas.modules.company.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -11,10 +11,9 @@ import org.hibernate.validator.constraints.Length;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data //faz os gets/sets
-@Entity(name = "candidate") //definde tabela
-public class CandidateEntity {
-
+@Entity(name = "company")
+@Data
+public class CompanyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID) //gerar uuid aleatório e único de forma automática
     private UUID id;
@@ -33,8 +32,8 @@ public class CandidateEntity {
     //define mensagem de erro caso o tamanho de password n esteja dentro do intervalo definido
     @Length(min = 10, max = 256, message = "O campo [password] deve conter uma senha com tamanho entre 10 e 16")
     private String password;
+    private String website;
     private String description;
-    private String resume;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
