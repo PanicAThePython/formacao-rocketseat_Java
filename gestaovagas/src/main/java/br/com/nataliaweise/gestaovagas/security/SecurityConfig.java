@@ -24,7 +24,7 @@ public class SecurityConfig {
     private static final String[] SWAGGER_LIST = {
             "/swagger-ui/**",
             "/v3/api-docs/**",
-            "/swagger-resources/**"
+            "/swagger-resources/**",
     };
 
     @Bean
@@ -35,18 +35,16 @@ public class SecurityConfig {
                             .requestMatchers("/company/").permitAll()
                             .requestMatchers("/company/auth").permitAll()
                             .requestMatchers("/candidate/auth").permitAll()
-                            .requestMatchers("/swagger-ui/index.html").permitAll()
                             .requestMatchers(SWAGGER_LIST).permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .addFilterBefore(securityCandidateFilter, BasicAuthenticationFilter.class)
-                .addFilterBefore(securityFilter, BasicAuthenticationFilter.class)
-        ;
+                .addFilterBefore(securityFilter, BasicAuthenticationFilter.class);
         return http.build();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
