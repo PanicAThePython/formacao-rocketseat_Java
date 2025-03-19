@@ -1,7 +1,6 @@
 package br.com.nataliaweise.gestaovagas.modules.company.useCases;
 
-import br.com.nataliaweise.gestaovagas.exceptions.UserFoundException;
-import br.com.nataliaweise.gestaovagas.modules.company.entities.CompanyEntity;
+import br.com.nataliaweise.gestaovagas.exceptions.CompanyNotFoundException;
 import br.com.nataliaweise.gestaovagas.modules.company.entities.JobEntity;
 import br.com.nataliaweise.gestaovagas.modules.company.repositories.CompanyRepository;
 import br.com.nataliaweise.gestaovagas.modules.company.repositories.JobRepository;
@@ -14,7 +13,13 @@ public class CreateJobUseCase {
     @Autowired
     private JobRepository jobRepository;
 
-    public JobEntity execute(JobEntity jobRepository){
-        return this.jobRepository.save(jobRepository);
+    @Autowired
+    private CompanyRepository companyRepository;
+
+    public JobEntity execute(JobEntity job){
+        companyRepository.findById(job.getCompanyId()).orElseThrow(() -> {
+            throw new CompanyNotFoundException();
+        });
+        return this.jobRepository.save(job);
     }
 }
