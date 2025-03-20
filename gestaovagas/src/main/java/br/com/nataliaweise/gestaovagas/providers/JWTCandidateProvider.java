@@ -22,7 +22,6 @@ public class JWTCandidateProvider {
             var tokenDecoded = JWT.require(algorithm).build().verify(token);
             return tokenDecoded;
         } catch (JWTVerificationException e) {
-            e.printStackTrace();
             return null;
         }
 

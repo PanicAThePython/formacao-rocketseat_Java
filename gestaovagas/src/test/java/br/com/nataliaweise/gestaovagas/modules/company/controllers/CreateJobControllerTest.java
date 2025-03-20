@@ -20,10 +20,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
 import org.springframework.web.context.WebApplicationContext;
 import java.util.UUID;
-import static org.assertj.core.api.Assertions.assertThat;
 import static br.com.nataliaweise.gestaovagas.utils.TestUtils.generateToken;
 import static br.com.nataliaweise.gestaovagas.utils.TestUtils.objectToJSON;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
